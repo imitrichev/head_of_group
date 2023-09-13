@@ -18,22 +18,22 @@ struct Candidate {
 
 // Функция для проведения голосования
 void conductElection(vector<Candidate>& candidates) {
-    cout << "Голосование за выбор старосты!" << endl;
+    cout << "Voting for the choice of the headman!" << endl;
 
     // Вывод списка кандидатов
-    cout << "Кандидаты:" << endl;
+    cout << "Candidates:" << endl;
     for (int i = 0; i < candidates.size(); i++) {
         cout << i + 1 << ". " << candidates[i].name << endl;
     }
 
     // Цикл голосования
     while (true) {
-        cout << "Введите номер кандидата, за которого хотите проголосовать (0 - закончить голосование): ";
+        cout << "Enter the number of the candidate you want to vote for (0 - finish voting): ";
         int choice;
         cin >> choice;
 
         if (choice < 0 || choice > candidates.size()) {
-            cout << "Недопустимый выбор!" << endl;
+            cout << "Unacceptable choice!" << endl;
             continue;
         }
         else if (choice == 0) {
@@ -41,11 +41,11 @@ void conductElection(vector<Candidate>& candidates) {
         }
 
         char sure;
-        cout << " Вы уверены Y/N?: ";
+        cout << "Are you sure Y/N?: ";
         cin >> sure;
 
         if (sure != 'Y' && sure != 'N') {
-            cout << "Недопустимый выбор!" << endl;
+            cout << "Unacceptable choice!" << endl;
         }
         else if (sure == 'N') {
             continue;
@@ -66,30 +66,30 @@ void conductElection(vector<Candidate>& candidates) {
         });
 
     // Вывод результатов голосования
-    cout << "Результаты голосования:" << endl;
+    cout << "Voting results:" << endl;
     for (int i = 0; i < candidates.size(); i++) {
-        cout << i + 1 << ". " << candidates[i].name << ": " << candidates[i].votes << " голосов" << endl;
+        cout << i + 1 << ". " << candidates[i].name << ": " << candidates[i].votes << " voices" << endl;
     }
 }
 
 int main() {
-    setlocale(LC_ALL, "Russian");
+    //setlocale(LC_ALL, "Russian");
     // Ввод количества кандидатов
     int numCandidates;
-    cout << "Введите количество кандидатов: ";
+    cout << "Enter the number of candidates: ";
     cin >> numCandidates;
 
     // Ввод имён кандидатов
     vector<Candidate> candidates;
     for (int i = 0; i < numCandidates; i++) {
         string name;
-        cout << "Введите имя кандидата #" << i + 1 << ": ";
+        cout << "Enter the candidate's name #" << i + 1 << ": ";
         cin >> name;
         candidates.push_back(Candidate(name));
     }
 
     // Проведение голосования
     conductElection(candidates);
-
+    system("pause");
     return 0;
 }
