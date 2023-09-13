@@ -18,7 +18,7 @@ struct Candidate {
 };
 
 // Функция для проведения голосования
-void conductElection(std::vector<Candidate>& candidates) {
+std::string conductElection(std::vector<Candidate>& candidates, std::vector<int>& votes) {
     std::cout << "Elections of captain!" << std::endl;
 
     // Вывод списка кандидатов
@@ -28,18 +28,8 @@ void conductElection(std::vector<Candidate>& candidates) {
     }
 
     // Цикл голосования
-    while (true) {
-        std::cout << "Enter number of candidate, you want to vote for (0 - end elections): ";
-        int choice;
-        std::cin >> choice;
-
-        if (choice < 0 || choice > candidates.size()) {
-            std::cout << "Unavailable choice!" << std::endl;
-            continue;
-        }
-        else if (choice == 0) {
-            break;
-        }
+    for (int i = 0; i < votes.size(); i++) {
+        int choice = votes[i];
 
         // Увеличение количества голосов кандидата
         candidates[choice - 1].votes++;
@@ -55,6 +45,9 @@ void conductElection(std::vector<Candidate>& candidates) {
     for (int i = 0; i < candidates.size(); i++) {
         std::cout << i + 1 << ". " << candidates[i].surname << " "<< candidates[i].name << ": " << candidates[i].votes << " votes" << std::endl;
     }
+
+    // Возвращаем фамилию и имя кандидата победителя
+    return candidates[0].surname + " " + candidates[0].name;
 }
 
 int main() {
@@ -81,7 +74,7 @@ int main() {
     }
 
     // Проведение голосования
-    conductElection(candidates);
-
+    std::string winner = conductElection(candidates, votes);
+    std::cout << "And the winner is.....\n" << winner << std::endl;
     return 0;
 }
