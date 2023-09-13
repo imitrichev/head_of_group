@@ -1,5 +1,5 @@
 #include <iostream>
-#include <string>
+#include <string.h>
 #include <vector>
 #include <algorithm>
 
@@ -40,14 +40,30 @@ void conductElection(vector<Candidate>& candidates) {
             break;
         }
 
-        // Увеличение количества голосов кандидата
-        candidates[choice - 1].votes++;
+        char sure;
+        cout << " Вы уверены Y/N?: ";
+        cin >> sure;
+
+        if (sure != 'Y' && sure != 'N') {
+            cout << "Недопустимый выбор!" << endl;
+        }
+        else if (sure == 'N') {
+            continue;
+        }
+
+        else if (sure == 'Y') {
+            // Увеличение количества голосов кандидата
+            candidates[choice - 1].votes++;
+        }
+
+
+
     }
 
     // Сортировка кандидатов по убыванию голосов
     sort(candidates.begin(), candidates.end(), [](const Candidate& a, const Candidate& b) {
         return a.votes > b.votes;
-    });
+        });
 
     // Вывод результатов голосования
     cout << "Результаты голосования:" << endl;
@@ -57,6 +73,7 @@ void conductElection(vector<Candidate>& candidates) {
 }
 
 int main() {
+    setlocale(LC_ALL, "Russian");
     // Ввод количества кандидатов
     int numCandidates;
     cout << "Введите количество кандидатов: ";
