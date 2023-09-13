@@ -54,8 +54,8 @@ std::string conductElection(std::vector<Candidate>& candidates, std::vector<int>
 
 
 TEST(FunctionTesting, test_elections) {
-    std::vector<Candidate> candidates = {Candidate("Nikita", "Sidorenko"), Candidate("Ryan", "Gosling"), Candidate("Mikhail", "Sidorenko") }
-    std::vector<int> votes = {1, 1, 1, 2, 2, 3, 1, 2, 3, 1, 1, 1}
+    std::vector<Candidate> candidates = {Candidate("Nikita", "Sidorenko"), Candidate("Ryan", "Gosling"), Candidate("Mikhail", "Sidorenko") };
+    std::vector<int> votes = {1, 1, 1, 2, 2, 3, 1, 2, 3, 1, 1, 1};
     EXPECT_EQ("Sidorenko Nikita", conductElection(candidates, votes));
 }
 
