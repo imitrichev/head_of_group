@@ -54,14 +54,12 @@ std::string conductElection(std::vector<Candidate>& candidates, std::vector<int>
 int main() {
     srand(time(0));
 
-    // Ввод количества кандидатов
-    int numCandidates;
-    std::vector<std::string> names = {"Nikita", "Mikhail", "Alexei", "Ivan", "Mars", "Ryan"};
-    std::vector<std::string> surnames = {"Sidorenko", "Babkin", "Lobanov", "Sergayev", "Gaifullin", "Gosling"};
-    std::cout << "Enter candidates amount: ";
-    std::cin >> numCandidates;
+    // Случайная генерация количества кандидатов
+    int numCandidates = rand() % 9 + 2;
 
     // Случайная генерация имён и фамилий кандидатов
+    std::vector<std::string> names = {"Nikita", "Mikhail", "Alexei", "Ivan", "Mars", "Ryan"};
+    std::vector<std::string> surnames = {"Sidorenko", "Babkin", "Lobanov", "Sergayev", "Gaifullin", "Gosling"};
     std::vector<Candidate> candidates;
     for (int i = 0; i < numCandidates; i++) {
         std::string name = names[rand() % names.size()];
