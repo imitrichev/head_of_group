@@ -26,22 +26,34 @@ void conductElection(vector<Candidate>& candidates) {
         cout << i + 1 << ". " << candidates[i].name << endl;
     }
 
+    vector<string> electors_surnames;
+
     // Цикл голосования
     while (true) {
-        cout << "Enter the number of the candidate you want to vote for (0 - finish voting): ";
-        int choice;
-        cin >> choice;
+        string surname;
+        cout << "Introduce yourself (or enter 0 to finish voting): ";
+        cin >> surname;
+        if (surname == "0") break;
+        // если введенной фамилии нет в массиве, то разрешаем голосование
+        if (find(electors_surnames.begin(), electors_surnames.end(), surname) == electors_surnames.end()) {
+            cout << "Enter the number of the candidate you want to vote for: ";
+            int choice;
+            cin >> choice;
 
-        if (choice < 0 || choice > candidates.size()) {
-            cout << "Invalid choice!" << endl;
-            continue;
-        }
-        else if (choice == 0) {
-            break;
-        }
+            if (choice < 0 || choice > candidates.size()) {
+                cout << "Invalid choice!" << endl;
+                continue;
+            }
 
-        // Увеличение количества голосов кандидата
-        candidates[choice - 1].votes++;
+            // Увеличение количества голосов кандидата
+            candidates[choice - 1].votes++;
+            // Добавляем избирателя в список проголосовавших
+            electors_surnames.push_back(surname);
+            cout << "Your vote confirmed. Call the next elector" << endl;
+        }
+        else {
+            cout << "Stop right there you criminal scum! You have already voted!" << endl;
+        }
     }
 
     // Сортировка кандидатов по убыванию голосов
