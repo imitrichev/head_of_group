@@ -3,6 +3,7 @@
 #include <vector>
 #include <algorithm>
 #include <ctime>
+#include "gtest/gtest.h"
 
 
 // Структура для хранения информации о кандидате
@@ -51,31 +52,56 @@ std::string conductElection(std::vector<Candidate>& candidates, std::vector<int>
     return candidates[0].surname + " " + candidates[0].name;
 }
 
-int main() {
-    srand(time(0));
 
-    // Случайная генерация количества кандидатов
-    int numCandidates = rand() % 9 + 2;
+TEST(FunctionTesting, test_elections) {
+  EXPECT_EQ("Sidorenko Nikita",
+  conductElection(
+    std::vector<Candidate> candidates = {Candidate("Nikita", "Sidorenko"), Candidate("Ryan", "Gosling"), Candidate("Mikhail", "Sidorenko") },
+    std::vector<int> votes = {1, 1, 1, 2, 2, 3, 1, 2, 3, 1, 1, 1}
+  ));
+  EXPECT_EQ("Sidorenko Mars",
+  conductElection(
+    std::vector<Candidate> candidates = {Candidate("Ryan", "Gosling"), Candidate("Mars", "Sidorenko"), Candidate("Alexei", "Lobanov") },
+    std::vector<int> votes = {1, 1, 1, 2, 2, 3, 1, 2, 3, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2}
+  ));
+  EXPECT_EQ("Sidorenko Ryan",
+  conductElection(
+    std::vector<Candidate> candidates = {Candidate("Mars", "Gosling"), Candidate("Alexei", "Lobanov"), Candidate("Ryan", "Sidorenko") },
+    std::vector<int> votes = {1, 1, 1, 2, 2, 3, 1, 2, 3, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3}
+  ));
+}
 
+
+int main(int argc, char **argv) {
+    // Обычный запуск программы
+    // 
+    // srand(time(0));
+    // 
+    // // Случайная генерация количества кандидатов
+    // int numCandidates = rand() % 9 + 2;
+    // 
     // Случайная генерация имён и фамилий кандидатов
-    std::vector<std::string> names = {"Nikita", "Mikhail", "Alexei", "Ivan", "Mars", "Ryan"};
-    std::vector<std::string> surnames = {"Sidorenko", "Babkin", "Lobanov", "Sergayev", "Gaifullin", "Gosling"};
-    std::vector<Candidate> candidates;
-    for (int i = 0; i < numCandidates; i++) {
-        std::string name = names[rand() % names.size()];
-        std::string surname = surnames[rand() % names.size()];
-        candidates.push_back(Candidate(name, surname));
-    }
+    // std::vector<std::string> names = {"Nikita", "Mikhail", "Alexei", "Ivan", "Mars", "Ryan"};
+    // std::vector<std::string> surnames = {"Sidorenko", "Babkin", "Lobanov", "Sergayev", "Gaifullin", "Gosling"};
+    // std::vector<Candidate> candidates;
+    // for (int i = 0; i < numCandidates; i++) {
+    //     std::string name = names[rand() % names.size()];
+    //     std::string surname = surnames[rand() % names.size()];
+    //     candidates.push_back(Candidate(name, surname));
+    // }
+    // 
+    // // Случайная генерация голосов
+    // int votes_amount = rand() % 100 + 1;
+    // std::vector<int> votes;
+    // for (int i = 0; i < votes_amount; i++) {
+    //     votes.push_back(rand() % numCandidates + 1);
+    // }
+    // 
+    // // Проведение голосования
+    // std::string winner = conductElection(candidates, votes);
+    // std::cout << "And the winner is.....\n" << winner << std::endl;
 
-    // Случайная генерация голосов
-    int votes_amount = rand() % 100 + 1;
-    std::vector<int> votes;
-    for (int i = 0; i < votes_amount; i++) {
-        votes.push_back(rand() % numCandidates + 1);
-    }
-
-    // Проведение голосования
-    std::string winner = conductElection(candidates, votes);
-    std::cout << "And the winner is.....\n" << winner << std::endl;
-    return 0;
+    // Запуск тестов
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
 }
