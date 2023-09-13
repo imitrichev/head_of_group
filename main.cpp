@@ -29,13 +29,13 @@ std::string conductElection(std::vector<Candidate>& candidates, std::vector<int>
         std::cout << i + 1 << ". " << candidates[i].surname << " "<< candidates[i].name << std::endl;
     }
 
-    if (candidates.size() === 0) {
+    if (candidates.size() == 0) {
         return "NO CANDIDATES";
     }
-    if (candidates.size() === 1) {
+    if (candidates.size() == 1) {
         return "NO ELECTIONS";
     }
-    if (votes.size() === 0) {
+    if (votes.size() == 0) {
         return "NO VOTES";
     }
 
@@ -45,7 +45,7 @@ std::string conductElection(std::vector<Candidate>& candidates, std::vector<int>
     for (int i = 0; i < votes.size(); i++) {
         int choice = votes[i];
         if (choice > candidates.size()) {
-            return 'ILLEGAL VOTE';
+            return "ILLEGAL VOTE";
         }
 
         // Увеличение количества голосов кандидата
