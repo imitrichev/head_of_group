@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <ctime>
 
 
 // Структура для хранения информации о кандидате
@@ -51,6 +52,8 @@ std::string conductElection(std::vector<Candidate>& candidates, std::vector<int>
 }
 
 int main() {
+    srand(time(0));
+
     // Ввод количества кандидатов
     int numCandidates;
     std::vector<std::string> names = {"Nikita", "Mikhail", "Alexei", "Ivan", "Mars", "Ryan"};
