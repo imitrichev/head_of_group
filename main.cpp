@@ -60,18 +60,24 @@ void conductElection(std::vector<Candidate>& candidates) {
 int main() {
     // Ввод количества кандидатов
     int numCandidates;
+    std::vector<std::string> names = {"Nikita", "Mikhail", "Alexei", "Ivan", "Mars", "Ryan"};
+    std::vector<std::string> surnames = {"Sidorenko", "Babkin", "Lobanov", "Sergayev", "Gaifullin", "Gosling"};
     std::cout << "Enter candidates amount: ";
     std::cin >> numCandidates;
 
-    // Ввод имён и фамилий кандидатов
+    // Случайная генерация имён и фамилий кандидатов
     std::vector<Candidate> candidates;
     for (int i = 0; i < numCandidates; i++) {
-        std::string name, surname;
-        std::cout << "Enter candidate #" << i + 1 << " name: ";
-        std::cin >> name;
-        std::cout << "Enter candidate #" << i + 1 << " surname: ";
-        std::cin >> surname;
+        std::string name = names[rand() % names.size()];
+        std::string surname = surnames[rand() % names.size()];
         candidates.push_back(Candidate(name, surname));
+    }
+
+    // Случайная генерация голосов
+    int votes_amount = rand() % 100 + 1;
+    std::vector<int> votes;
+    for (int i = 0; i < votes_amount; i++) {
+        votes.push_back(rand() % numCandidates + 1);
     }
 
     // Проведение голосования
