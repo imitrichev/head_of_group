@@ -3,37 +3,36 @@
 #include <vector>
 #include <algorithm>
 
-using namespace std;
 
 // Структура для хранения информации о кандидате
 struct Candidate {
-    string name;
+    std::string name;
     int votes;
 
-    Candidate(string n) {
+    Candidate(std::string n) {
         name = n;
         votes = 0;
     }
 };
 
 // Функция для проведения голосования
-void conductElection(vector<Candidate>& candidates) {
-    cout << "Голосование за выбор старосты!" << endl;
+void conductElection(std::vector<Candidate>& candidates) {
+    std::cout << "Голосование за выбор старосты!" << std::endl;
 
     // Вывод списка кандидатов
-    cout << "Кандидаты:" << endl;
+    std::cout << "Кандидаты:" << std::endl;
     for (int i = 0; i < candidates.size(); i++) {
-        cout << i + 1 << ". " << candidates[i].name << endl;
+        std::cout << i + 1 << ". " << candidates[i].name << std::endl;
     }
 
     // Цикл голосования
     while (true) {
-        cout << "Введите номер кандидата, за которого хотите проголосовать (0 - закончить голосование): ";
+        std::cout << "Введите номер кандидата, за которого хотите проголосовать (0 - закончить голосование): ";
         int choice;
-        cin >> choice;
+        std::cin >> choice;
 
         if (choice < 0 || choice > candidates.size()) {
-            cout << "Недопустимый выбор!" << endl;
+            std::cout << "Недопустимый выбор!" << std::endl;
             continue;
         }
         else if (choice == 0) {
@@ -50,24 +49,24 @@ void conductElection(vector<Candidate>& candidates) {
     });
 
     // Вывод результатов голосования
-    cout << "Результаты голосования:" << endl;
+    std::cout << "Результаты голосования:" << std::endl;
     for (int i = 0; i < candidates.size(); i++) {
-        cout << i + 1 << ". " << candidates[i].name << ": " << candidates[i].votes << " голосов" << endl;
+        std::cout << i + 1 << ". " << candidates[i].name << ": " << candidates[i].votes << " голосов" << std::endl;
     }
 }
 
 int main() {
     // Ввод количества кандидатов
     int numCandidates;
-    cout << "Введите количество кандидатов: ";
-    cin >> numCandidates;
+    std::cout << "Введите количество кандидатов: ";
+    std::cin >> numCandidates;
 
     // Ввод имён кандидатов
-    vector<Candidate> candidates;
+    std::vector<Candidate> candidates;
     for (int i = 0; i < numCandidates; i++) {
-        string name;
-        cout << "Введите имя кандидата #" << i + 1 << ": ";
-        cin >> name;
+        std::string name;
+        std::cout << "Введите имя кандидата #" << i + 1 << ": ";
+        std::cin >> name;
         candidates.push_back(Candidate(name));
     }
 
