@@ -16,15 +16,48 @@ struct Candidate {
     }
 };
 
+void printCandidates(vector<Candidate>& candidates, ostream& sout) {
+    for (int i = 0; i < candidates.size(); i++) {
+        sout << i + 1 << ". " << candidates[i].name << endl;
+    }
+}
+
+bool hasAlreadyVoted(vector<string>& surnames, string surname_to_check) {
+    return find(surnames.begin(), surnames.end(), surname_to_check) != surnames.end();
+}
+
+void candidatesOrderByVotesDesc(vector<Candidate>& candidates) {
+    sort(candidates.begin(), candidates.end(), [](const Candidate& a, const Candidate& b) {
+        return a.votes > b.votes;
+    });
+}
+
+void printVotingResults(vector<Candidate>& candidates, ostream& sout) {
+    for (int i = 0; i < candidates.size(); i++) {
+        sout << i + 1 << ". " << candidates[i].name << ": " << candidates[i].votes << " votes" << endl;
+    }
+}
+
+bool performVote(string surname, int choice, vector<Candidate>& candidates, vector<string>& electors) {
+    if (choice <= 0 || choice > candidates.size()) {
+        return false;
+    }
+
+    // Увеличение количества голосов кандидата
+    candidates[choice - 1].votes++;
+    // Добавляем избирателя в список проголосовавших
+    electors.push_back(surname);
+
+    return true;
+}
+
 // Функция для проведения голосования
 void conductElection(vector<Candidate>& candidates) {
     cout << "Voting for the choice of the headman!" << endl;
 
     // Вывод списка кандидатов
     cout << "Candidates:" << endl;
-    for (int i = 0; i < candidates.size(); i++) {
-        cout << i + 1 << ". " << candidates[i].name << endl;
-    }
+    printCandidates(candidates, cout);
 
     vector<string> electors_surnames;
 
@@ -35,21 +68,17 @@ void conductElection(vector<Candidate>& candidates) {
         cin >> surname;
         if (surname == "0") break;
         // если введенной фамилии нет в массиве, то разрешаем голосование
-        if (find(electors_surnames.begin(), electors_surnames.end(), surname) == electors_surnames.end()) {
+        if (!hasAlreadyVoted(electors_surnames, surname)) {
             cout << "Enter the number of the candidate you want to vote for: ";
             int choice;
             cin >> choice;
 
-            if (choice < 0 || choice > candidates.size()) {
+            if (!performVote(surname, choice, candidates, electors_surnames)) {
                 cout << "Invalid choice!" << endl;
                 continue;
             }
 
-            // Увеличение количества голосов кандидата
-            candidates[choice - 1].votes++;
-            // Добавляем избирателя в список проголосовавших
-            electors_surnames.push_back(surname);
-            cout << "Your vote confirmed. Call the next elector" << endl;
+            cout << "Your vote confirmed. Next!" << endl;
         }
         else {
             cout << "Stop right there you criminal scum! You have already voted!" << endl;
@@ -57,15 +86,11 @@ void conductElection(vector<Candidate>& candidates) {
     }
 
     // Сортировка кандидатов по убыванию голосов
-    sort(candidates.begin(), candidates.end(), [](const Candidate& a, const Candidate& b) {
-        return a.votes > b.votes;
-    });
+    candidatesOrderByVotesDesc(candidates);
 
     // Вывод результатов голосования
     cout << "Voting results:" << endl;
-    for (int i = 0; i < candidates.size(); i++) {
-        cout << i + 1 << ". " << candidates[i].name << ": " << candidates[i].votes << " votes" << endl;
-    }
+    printVotingResults(candidates, cout);
 }
 
 int main() {
