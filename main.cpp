@@ -22,6 +22,16 @@ struct Candidate {
 bool conductElection(vector<Candidate>& candidates) 
 {
     cout << "voting for the election of the headman!" << endl;
+    if (candidates.size() == 0) 
+    {
+      cout << "NO CANDIDATES" << endl;
+      return true;
+    }
+    if (candidates.size() == 1) 
+    {
+      cout << "NO ELECTIONS" << endl;
+      return true;
+    }
 
     // Вывод списка кандидатов
     cout << "Candidates:" << endl;
@@ -172,39 +182,39 @@ void inputCandidateNames(vector<Candidate>& candidates, int numCandidates)
 
 int main(int argc, char **argv) 
 {
-    // setlocale(LC_CTYPE, "Russian");
+  // setlocale(LC_CTYPE, "Russian");
 
-// ОСНОВНАЯ ЛОГИКА
-// Ввод количества кандидатов
-//     int numCandidates;
-//     cout << "Enter candidates count: ";
-//     cin >> numCandidates;
+  // ОСНОВНАЯ ЛОГИКА
+  // Ввод количества кандидатов
+  // int numCandidates;
+  // cout << "Enter candidates count: ";
+  // cin >> numCandidates;
 
-//     // Ввод имён кандидатов
-//     vector<Candidate> candidates;
-//     inputCandidateNames(candidates, numCandidates);
+  // // Ввод имён кандидатов
+  // vector<Candidate> candidates;
+  // inputCandidateNames(candidates, numCandidates);
 
-//     // Проведение голосования
-//     while (true)
-//     {
-//         bool val = conductElection(candidates);
-//         if (!val)
-//         {
-//             candidates.clear();
-//             candidates.shrink_to_fit();
-//             cout << "Enter candidates count: ";
-//             cin >> numCandidates;
-//             inputCandidateNames(candidates, numCandidates);
-//         }
-//         else
-//         {
-//             break;
-//         }
-//     }
+  // // Проведение голосования
+  // while (true)
+  // {
+  //     bool val = conductElection(candidates);
+  //     if (!val)
+  //     {
+  //         candidates.clear();
+  //         candidates.shrink_to_fit();
+  //         cout << "Enter candidates count: ";
+  //         cin >> numCandidates;
+  //         inputCandidateNames(candidates, numCandidates);
+  //     }
+  //     else
+  //     {
+  //         break;
+  //     }
+  // }
 
-//     return 0;
+  // return 0;
 
-// ТЕСТЫ
+  // ТЕСТЫ
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
 }
