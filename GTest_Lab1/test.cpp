@@ -1,5 +1,5 @@
-#include "pch.h"
-//#include "gtest/gtest.h"
+//#include "pch.h"
+#include "gtest/gtest.h"
 #include "../1LB_10VAR/main.h"
 #include <sstream>
 
