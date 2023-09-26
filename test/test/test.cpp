@@ -1,5 +1,5 @@
 //#include "pch.h"
-#include "main.h" 
+#include "../laba1/main.h" 
 #include <sstream>
 #include "gtest/gtest.h"
 
