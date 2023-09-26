@@ -30,9 +30,9 @@ TEST(circle, HaveInvalidChoices) {
 
 	circle(candidates, in_stream, out_stream);
 
-	ASSERT_EQ(candidates[0], votes, 0);
-	ASSERT_EQ(candidates[1], votes, 0);
-	ASSERT_EQ(candidates[2], votes, 0);
+	ASSERT_EQ(candidates[0].votes, 0);
+	ASSERT_EQ(candidates[1].votes, 0);
+	ASSERT_EQ(candidates[2].votes, 0);
 }
 
 int main(int argc, char** argv)
