@@ -39,6 +39,11 @@ void outputElection(vector<Candidate>& candidates){
     // Вывод результатов
     for (int i = 0; i < candidates.size(); i++) {
         cout << "@ " << i + 1 << ". " << candidates[i].name << ": " << candidates[i].votes << " votes";
+        int needed_spaces_amount = 0;
+        needed_spaces_amount = candidates_longest_name_length - candidates[i].name.length();
+        for (int j = 0; j < needed_spaces_amount + 1; j++){
+            cout << " ";
+        }
         cout << "@" << endl;
     }
     // Нижняя разграничивающая строка
