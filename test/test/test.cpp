@@ -42,11 +42,10 @@ TEST(outputcandidates, HaveCorrectChoices) {
 		Candidate("Mora")
 	};
 
-	istringstream in_stream("1 Y 0");
-	ostringstream out_stream;
-
-	circle(candidates, out_stream, in_stream);
-
+	
+    candidates[0].votes = 1;
+	candidates[1].votes = 3;
+	
 	stringstream sstream;
 	outputcandidates(candidates, sstream);
 	string result = sstream.str();
