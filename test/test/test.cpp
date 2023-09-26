@@ -69,6 +69,22 @@ TEST(circle, Have1InvalidChoices) {
 	ASSERT_EQ(candidates[1].votes, 0);
 }
 
+TEST(circle, HaveInvalidSures) {
+	vector<Candidate> candidates = {
+		Candidate("Elya"),
+		Candidate("Mora")
+	};
+
+	istringstream in_stream("-1 1 R 0");
+	ostringstream out_stream;
+
+	circle(candidates, out_stream, in_stream);
+
+
+	ASSERT_EQ(candidates[0].votes, 0);
+	ASSERT_EQ(candidates[1].votes, 0);
+}
+
 
 
 int main(int argc, char** argv)
