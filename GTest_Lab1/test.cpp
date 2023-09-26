@@ -1,5 +1,5 @@
-//#include "pch.h"
-#include "gtest/gtest.h"
+#include "pch.h"
+//#include "gtest/gtest.h"
 #include "../1LB_10VAR/main.h"
 #include <sstream>
 
@@ -44,6 +44,19 @@ TEST(Vote, CanHandleValidChoices) {
 
 	ASSERT_EQ(candidates[0].votes, 2);
 	ASSERT_EQ(candidates[1].votes, 1);
+}
+
+TEST(Sort, CanSortListOfCandidates) {
+	vector<Candidate> candidates = {
+		Candidate("Pupa"),
+		Candidate("Lupa")
+	};
+	candidates[0].votes = 1;
+	candidates[1].votes = 5;
+
+	sortCandidates(candidates);
+
+	ASSERT_EQ(candidates[0].name, "Lupa");
 }
 
 int main(int argc, char** argv)
