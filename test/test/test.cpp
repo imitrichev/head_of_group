@@ -59,7 +59,7 @@ TEST(circle, Have1InvalidChoices) {
 		Candidate("Mora")
 	};
 
-	istringstream in_stream("-1 1 0");
+	istringstream in_stream("-1 1 Y 0");
 	ostringstream out_stream;
 
 	circle(candidates, out_stream, in_stream);
