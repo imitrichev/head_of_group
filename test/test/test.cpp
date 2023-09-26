@@ -50,7 +50,7 @@ TEST(outputcandidates, HaveCorrectChoices) {
 	outputcandidates(candidates, sstream);
 	string result = sstream.str();
 	
-	ASSERT_EQ(result, "Voting results:\n1. Elya: ", candidates[0].votes, " voices\n2.Mora: ", candidates[1].votes, " voices\n");
+	ASSERT_EQ(result, "Voting results:\n1. Elya: 1 voices\n2. Mora: 3 voices\n");
 }
 
 int main(int argc, char** argv)
