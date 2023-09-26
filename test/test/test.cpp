@@ -53,6 +53,24 @@ TEST(outputcandidates, HaveCorrectChoices) {
 	ASSERT_EQ(result, "Voting results:\n1. Elya: 1 voices\n2. Mora: 3 voices\n");
 }
 
+TEST(circle, Have1InvalidChoices) {
+	vector<Candidate> candidates = {
+		Candidate("Elya"),
+		Candidate("Mora")
+	};
+
+	istringstream in_stream("-1 1 0");
+	ostringstream out_stream;
+
+	circle(candidates, out_stream, in_stream);
+
+
+	ASSERT_EQ(candidates[0].votes, 1);
+	ASSERT_EQ(candidates[1].votes, 0);
+}
+
+
+
 int main(int argc, char** argv)
 {
 	::testing::InitGoogleTest(&argc, argv);
