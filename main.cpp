@@ -31,11 +31,19 @@ void outputElection(vector<Candidate>& candidates){
     cout << "\nLongest name is " << candidates_longest_name_length << " symbols" << endl;
 
     cout << "\nElection results:" << endl;
+    // Верхняя разграничивающая строка
+    for (int i = 0; i < 16+candidates_longest_name_length; i++) {
+        cout << "@";
+    }
     cout << endl;
     // Вывод результатов
     for (int i = 0; i < candidates.size(); i++) {
         cout << "@ " << i + 1 << ". " << candidates[i].name << ": " << candidates[i].votes << " votes";
         cout << "@" << endl;
+    }
+    // Нижняя разграничивающая строка
+    for (int i = 0; i < 16+candidates_longest_name_length; i++) {
+        cout << "@";
     }
 }
 // Функция для проведения голосования
