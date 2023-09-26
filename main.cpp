@@ -17,15 +17,19 @@ struct Candidate {
 };
 // Searching for the length of the longest name of candidate
 int canditatesLongestName(vector<Candidate>& candidates){
-    int candidates_longest_name = 0;
+    int candidates_longest_name_length = 0;
     for(int i = 0; i < candidates.size(); i++){
-        if (candidates[i].name.length() > candidates_longest_name){
-            candidates_longest_name = candidates[i].name.length();
+        if (candidates[i].name.length() > candidates_longest_name_length){
+            candidates_longest_name_length = candidates[i].name.length();
         }
     }
-    return candidates_longest_name;
+    return candidates_longest_name_length;
 }
 void outputElection(vector<Candidate>& candidates){
+    // Длина самого длинного имени кандидата
+    int candidates_longest_name_length = canditatesLongestName(candidates);
+    cout << "\nLongest name is " << candidates_longest_name_length << " symbols" << endl;
+
     cout << "\nElection results:" << endl;
     cout << endl;
     // Вывод результатов
