@@ -28,7 +28,7 @@ TEST(circle, HaveInvalidChoices) {
 	istringstream in_stream("-1 6 5 0");
 	ostringstream out_stream;
 
-	circle(candidates, in_stream, out_stream);
+	circle(candidates, out_stream, in_stream);
 
 	ASSERT_EQ(candidates[0].votes, 0);
 	ASSERT_EQ(candidates[1].votes, 0);
