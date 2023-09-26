@@ -1,6 +1,24 @@
-#include "pch.h"
+//#include "pch.h"
+#include "main.h" 
+#include <sstream>
+#include "gtest/gtest.h"
 
-TEST(TestCaseName, TestName) {
-  EXPECT_EQ(1, 1);
-  EXPECT_TRUE(true);
+TEST(inputcandidates, FullListOfCandidates) {
+	vector<Candidate> candidates = {
+		Candidate("Elya"),
+		Candidate("Mora")
+	};
+
+	stringstream strstream;
+	inputcandidates(candidates, strstream);
+
+	string result = strstream.str();
+	ASSERT_EQ(result, "Voting for the choice of the headman!\nCandidates:\n1. Elya\n2. Mora\n");
+
+}
+
+int main(int argc, char** argv)
+{
+	::testing::InitGoogleTest(&argc, argv);
+	return RUN_ALL_TESTS();
 }

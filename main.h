@@ -18,25 +18,25 @@ struct Candidate {
     }
 };
 
-void inputcandidates(vector<Candidate>& candidates) {
-    cout << "Voting for the choice of the headman!" << endl;
+void inputcandidates(vector<Candidate>& candidates, ostream& out) {
+    out << "Voting for the choice of the headman!" << endl;
 
     // Вывод списка кандидатов
-    cout << "Candidates:" << endl;
+    out << "Candidates:" << endl;
     for (int i = 0; i < candidates.size(); i++) {
-        cout << i + 1 << ". " << candidates[i].name << endl;
+        out << i + 1 << ". " << candidates[i].name << endl;
     }
 }
 
-void circle(vector<Candidate>& candidates) {
+void circle(vector<Candidate>& candidates, ostream& out, istream& in) {
     // Цикл голосования
     while (true) {
-        cout << "Enter the number of the candidate you want to vote for (0 - finish voting): ";
+        out << "Enter the number of the candidate you want to vote for (0 - finish voting): ";
         int choice;
-        cin >> choice;
+        in >> choice;
 
         if (choice < 0 || choice > candidates.size()) {
-            cout << "Unacceptable choice!" << endl;
+            out << "Unacceptable choice!" << endl;
             continue;
         }
         else if (choice == 0) {
@@ -44,11 +44,11 @@ void circle(vector<Candidate>& candidates) {
         }
 
         char sure;
-        cout << "Are you sure Y/N?: ";
-        cin >> sure;
+        out << "Are you sure Y/N?: ";
+        in >> sure;
 
         if (sure != 'Y' && sure != 'N') {
-            cout << "Unacceptable choice!" << endl;
+            out << "Unacceptable choice!" << endl;
         }
         else if (sure == 'N') {
             continue;
@@ -71,10 +71,10 @@ void sortcandidates(vector<Candidate>& candidates) {
         });
 }
 
-void outputcandidates(vector<Candidate>& candidates) {
+void outputcandidates(vector<Candidate>& candidates, ostream& out) {
     // Вывод результатов голосования
-    cout << "Voting results:" << endl;
+    out << "Voting results:" << endl;
     for (int i = 0; i < candidates.size(); i++) {
-        cout << i + 1 << ". " << candidates[i].name << ": " << candidates[i].votes << " voices" << endl;
+        out << i + 1 << ". " << candidates[i].name << ": " << candidates[i].votes << " voices" << endl;
     }
 }

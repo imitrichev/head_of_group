@@ -24,10 +24,10 @@ int main() {
     }
 
     // Проведение голосования
-    inputcandidates(candidates);
-    circle(candidates);
+    inputcandidates(candidates, cout);
+    circle(candidates, cout, cin);
     sortcandidates(candidates);
-    outputcandidates(candidates);
+    outputcandidates(candidates, cout);
     system("pause");
     return 0;
 }
