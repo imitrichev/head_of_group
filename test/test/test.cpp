@@ -3,7 +3,7 @@
 #include <sstream>
 #include "gtest/gtest.h"
 
-TEST(inputcandidates, FullListOfCandidates) {
+TEST(inputcandidates, FullListOfCandidates) { //проверка вывода имен старост
 	vector<Candidate> candidates = {
 		Candidate("Elya"),
 		Candidate("Mora"),
@@ -18,7 +18,7 @@ TEST(inputcandidates, FullListOfCandidates) {
 
 }
 
-TEST(circle, HaveInvalidChoices) {
+TEST(circle, HaveInvalidChoices) { //Неверные номера голосов за старост
 	vector<Candidate> candidates = {
 		Candidate("Elya"),
 		Candidate("Mora"),
@@ -36,7 +36,7 @@ TEST(circle, HaveInvalidChoices) {
 	ASSERT_EQ(candidates[2].votes, 0);
 }
 
-TEST(outputcandidates, HaveCorrectChoices) {
+TEST(outputcandidates, HaveCorrectChoices) { //проверка вывода результатов
 	vector<Candidate> candidates = {
 		Candidate("Elya"),
 		Candidate("Mora")
@@ -53,7 +53,7 @@ TEST(outputcandidates, HaveCorrectChoices) {
 	ASSERT_EQ(result, "Voting results:\n1. Elya: 1 voices\n2. Mora: 3 voices\n");
 }
 
-TEST(circle, Have1InvalidChoices) {
+TEST(circle, Have1InvalidChoices) { //проверка голосов, при одном неверно ввденном значении
 	vector<Candidate> candidates = {
 		Candidate("Elya"),
 		Candidate("Mora")
@@ -69,7 +69,7 @@ TEST(circle, Have1InvalidChoices) {
 	ASSERT_EQ(candidates[1].votes, 0);
 }
 
-TEST(circle, HaveInvalidSures) {
+TEST(circle, HaveInvalidSures) { //проверка голосов при вводе неправильной буквы при вопросе (уверены ли вы?)
 	vector<Candidate> candidates = {
 		Candidate("Elya"),
 		Candidate("Mora")
