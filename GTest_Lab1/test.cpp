@@ -1,5 +1,5 @@
-//#include "pch.h"
-#include "gtest/gtest.h"
+#include "pch.h"
+//#include "gtest/gtest.h"
 #include "../1LB_10VAR/main.h"
 #include <sstream>
 
@@ -16,6 +16,34 @@ TEST(ListCandidates, CanWriteListOfCandidates) {
 
 	string res = sstream.str();
 	ASSERT_EQ(res, "Election of headman!\nCandidates:\n1. Pupa\n2. Lupa\n");
+}
+
+TEST(Vote, CanHandleInvalidChoices) {
+	vector<Candidate> candidates = {
+		Candidate("Pupa"),
+		Candidate("Lupa")
+	};
+	istringstream in_stream("-1 5 0");
+	ostringstream out_stream;
+
+	vote(candidates, in_stream, out_stream);
+
+	ASSERT_EQ(candidates[0].votes, 0);
+	ASSERT_EQ(candidates[1].votes, 0);
+}
+
+TEST(Vote, CanHandleValidChoices) {
+	vector<Candidate> candidates = {
+		Candidate("Pupa"),
+		Candidate("Lupa")
+	};
+	istringstream in_stream("1 2 1 0");
+	ostringstream out_stream;
+
+	vote(candidates, in_stream, out_stream);
+
+	ASSERT_EQ(candidates[0].votes, 2);
+	ASSERT_EQ(candidates[1].votes, 1);
 }
 
 int main(int argc, char** argv)
