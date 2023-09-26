@@ -14,7 +14,7 @@ TEST(inputcandidates, FullListOfCandidates) {
 
 	string result = strstream.str();
 	ASSERT_EQ(result, "Voting for the choice of the headman!\nCandidates:\n1. Elya\n2. Mora\n");
-
+	
 }
 
 int main(int argc, char** argv)
