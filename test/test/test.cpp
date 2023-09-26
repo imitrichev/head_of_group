@@ -9,10 +9,10 @@ TEST(inputcandidates, FullListOfCandidates) {
 		Candidate("Mora")
 	};
 
-	stringstream strstream;
-	inputcandidates(candidates, strstream);
+	stringstream sstream;
+	inputcandidates(candidates, sstream);
 
-	string result = strstream.str();
+	string result = sstream.str();
 	ASSERT_EQ(result, "Voting for the choice of the headman!\nCandidates:\n1. Elya\n2. Mora\n");
 	
 }
