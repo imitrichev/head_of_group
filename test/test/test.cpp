@@ -6,14 +6,15 @@
 TEST(inputcandidates, FullListOfCandidates) {
 	vector<Candidate> candidates = {
 		Candidate("Elya"),
-		Candidate("Mora")
+		Candidate("Mora"),
+		Candidate("Mura")
 	};
 
 	stringstream sstream;
 	inputcandidates(candidates, sstream);
 
 	string result = sstream.str();
-	ASSERT_EQ(result, "Voting for the choice of the headman!\nCandidates:\n1. Elya\n2. Mora\n");
+	ASSERT_EQ(result, "Voting for the choice of the headman!\nCandidates:\n1. Elya\n2. Mora\n3. Mura\n");
 	
 }
 
