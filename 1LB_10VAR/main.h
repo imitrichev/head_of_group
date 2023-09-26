@@ -20,26 +20,26 @@ struct Candidate {
 };
 
 // Функция для проведения голосования
-void listCandidates(vector<Candidate>& candidates) {
-    cout << "Голосование за выбор старосты!" << endl;
+void listCandidates(vector<Candidate>& candidates, ostream& stream) {
+    stream << "Election of headman!" << endl;
 
     // Вывод списка кандидатов
-    cout << "Кандидаты:" << endl;
+    stream << "Candidates:" << endl;
     for (int i = 0; i < candidates.size(); i++) {
-        cout << i + 1 << ". " << candidates[i].name << endl;
+        stream << i + 1 << ". " << candidates[i].name << endl;
     }
 }
 
-void vote(vector<Candidate>& candidates)
+void vote(vector<Candidate>& candidates, istream& in_stream, ostream& out_stream)
 {
     // Цикл голосования
     while (true) {
-        cout << "Введите номер кандидата, за которого хотите проголосовать (0 - закончить голосование): ";
+        out_stream << "Enter number of candidate you want to vote for (0 - end voting): ";
         int choice;
-        cin >> choice;
+        in_stream >> choice;
 
         if (choice < 0 || choice > candidates.size()) {
-            cout << "Недопустимый выбор!" << endl;
+            out_stream << "Invalid choice!" << endl;
             continue;
         }
         else if (choice == 0) {
@@ -59,12 +59,12 @@ void sortCandidates(vector<Candidate>& candidates)
 
 }
 
-void resultsVote(vector<Candidate>& candidates, ofstream& out)
+void resultsVote(vector<Candidate>& candidates, ofstream& out, ostream& stream)
 {
     // Вывод результатов голосования
-    out << "Результаты голосования: " << endl;
+    out << "Results: " << endl;
     for (int i = 0; i < candidates.size(); i++) {
-        out << i + 1 << ". " << candidates[i].name << ": " << candidates[i].votes << " голосов" << endl;
+        out << i + 1 << ". " << candidates[i].name << ": " << candidates[i].votes << " votes" << endl;
     }
-    cout << "Результаты голосования отправлены на файл results.txt" << endl;
+    stream << "Results have been writen to results.txt" << endl;
 }
