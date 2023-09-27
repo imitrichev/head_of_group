@@ -158,21 +158,21 @@ TEST(ElectionTest, NoCandidates) {
 }
 int main() {
     // Ввод количества кандидатов
-    int numCandidates;
-    cout << "Введите количество кандидатов: ";
-    cin >> numCandidates;
+    //int numCandidates;
+    //cout << "Введите количество кандидатов: ";
+    //cin >> numCandidates;
 
     // Ввод имён кандидатов
-    vector<Candidate> candidates;
-    for (int i = 0; i < numCandidates; i++) {
-        string name;
-        cout << "Введите фамилию и имя кандидата #" << i + 1 << ": ";
-        cin >> name;
-        candidates.push_back(Candidate(name));
-    }
+    //vector<Candidate> candidates;
+    //for (int i = 0; i < numCandidates; i++) {
+        //string name;
+        //cout << "Введите фамилию и имя кандидата #" << i + 1 << ": ";
+        //cin >> name;
+        //candidates.push_back(Candidate(name));
+    //}
 
     // Проведение голосования
-    conductElection(candidates);
-
+    //conductElection(candidates);
+    ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
