@@ -156,7 +156,7 @@ TEST(ElectionTest, NoCandidates) {
 
     std::cout.rdbuf(originalOutput);
 }
-int main() {
+int main(&argc, **argv) {
     // Ввод количества кандидатов
     //int numCandidates;
     //cout << "Введите количество кандидатов: ";
