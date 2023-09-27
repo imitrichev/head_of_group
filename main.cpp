@@ -157,7 +157,7 @@ TEST(ElectionTest, NoCandidates) {
     std::cout.rdbuf(originalOutput);
 }
 
-int main(&argc, **argv) {
+int main() {
     // Ввод количества кандидатов
     //int numCandidates;
     //cout << "Введите количество кандидатов: ";
@@ -174,6 +174,6 @@ int main(&argc, **argv) {
 
     // Проведение голосования
     //conductElection(candidates);
-    ::testing::InitGoogleTest(&argc, **argv);
+    ::testing::InitGoogleTest();
     return RUN_ALL_TESTS();
 }
