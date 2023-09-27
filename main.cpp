@@ -5,7 +5,7 @@
 #include <ctime>
 #include "gtest/gtest.h"
 
-
+using namespace std;
 // Структура для хранения информации о кандидате
 struct Candidate {
     std::string name;
@@ -67,7 +67,12 @@ std::string conductElection(std::vector<Candidate>& candidates, std::vector<int>
     return candidates[0].surname + " " + candidates[0].name;
 }
 
-
+//Тестирование конструктора Candidate:
+TEST(CandidateTest, Constructor) {
+    Candidate candidate("Иванов");
+    EXPECT_EQ(candidate.name, "Иванов");
+    EXPECT_EQ(candidate.votes, 0);
+}
 TEST(FunctionTesting, test_elections) {
     // тест 1
     std::vector<Candidate> candidates = {Candidate("Nikita", "Sidorenko"), Candidate("Ryan", "Gosling"), Candidate("Mikhail", "Sidorenko") };
@@ -115,35 +120,22 @@ TEST(FunctionTesting, test_elections_illegal_votes) {
 
 
 int main(int argc, char **argv) {
-    // Обычный запуск программы
-    // 
-    // srand(time(0));
-    // 
-    // // Случайная генерация количества кандидатов
-    // int numCandidates = rand() % 9 + 2;
-    // 
-    // Случайная генерация имён и фамилий кандидатов
-    // std::vector<std::string> names = {"Nikita", "Mikhail", "Alexei", "Ivan", "Mars", "Ryan"};
-    // std::vector<std::string> surnames = {"Sidorenko", "Babkin", "Lobanov", "Sergayev", "Gaifullin", "Gosling"};
-    // std::vector<Candidate> candidates;
-    // for (int i = 0; i < numCandidates; i++) {
-    //     std::string name = names[rand() % names.size()];
-    //     std::string surname = surnames[rand() % names.size()];
-    //     candidates.push_back(Candidate(name, surname));
-    // }
-    // 
-    // // Случайная генерация голосов
-    // int votes_amount = rand() % 100 + 1;
-    // std::vector<int> votes;
-    // for (int i = 0; i < votes_amount; i++) {
-    //     votes.push_back(rand() % numCandidates + 1);
-    // }
-    // 
-    // // Проведение голосования
-    // std::string winner = conductElection(candidates, votes);
-    // std::cout << "And the winner is.....\n" << winner << std::endl;
+     // Ввод количества кандидатов
+    //int numCandidates;
+    //cout << "Введите количество кандидатов: ";
+    //cin >> numCandidates;
 
-    // Запуск тестов
+    // Ввод имён кандидатов
+    //vector<Candidate> candidates;
+    //for (int i = 0; i < numCandidates; i++) {
+        //string name;
+        //cout << "Введите фамилию и имя кандидата #" << i + 1 << ": ";
+        //cin >> name;
+        //candidates.push_back(Candidate(name));
+    //}
+
+    // Проведение голосования
+    //conductElection(candidates);
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
