@@ -3,7 +3,7 @@
 #include <vector>
 #include <sstream>
 #include <algorithm>
-#include <gtest/gtest.h>
+#include "gtest/gtest.h"
 
 using namespace std;
 
@@ -156,6 +156,7 @@ TEST(ElectionTest, NoCandidates) {
 
     std::cout.rdbuf(originalOutput);
 }
+
 int main(&argc, **argv) {
     // Ввод количества кандидатов
     //int numCandidates;
