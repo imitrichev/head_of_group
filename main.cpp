@@ -1,7 +1,9 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <sstream>
 #include <algorithm>
+#include <gtest/gtest.h>
 
 using namespace std;
 
@@ -55,7 +57,105 @@ void conductElection(vector<Candidate>& candidates) {
         cout << i + 1 << ". " << candidates[i].name << ": " << candidates[i].votes << " голосов" << endl;
     }
 }
+//Тестирование конструктора Candidate:
+TEST(CandidateTest, Constructor) {
+    Candidate candidate("Иванов");
+    EXPECT_EQ(candidate.name, "Иванов");
+    EXPECT_EQ(candidate.votes, 0);
+}
+//Тестирование функции увеличения голосов:
+TEST(CandidateTest, IncrementVotes) {
+    Candidate candidate("Иванов");
+    candidate.votes++;
+    EXPECT_EQ(candidate.votes, 1);
+    candidate.votes += 3;
+    EXPECT_EQ(candidate.votes, 4);
+}
+//Тестирование функции проведения голосования с вводом:
+TEST(ElectionTest, ConductElectionWithInput) {
+    std::vector<Candidate> candidates;
+    candidates.push_back(Candidate("Иванов"));
+    candidates.push_back(Candidate("Петров"));
 
+    std::stringstream input("1\n2\n0\n");
+    std::streambuf* originalInput = std::cin.rdbuf();
+    std::cin.rdbuf(input.rdbuf());
+
+    std::stringstream output;
+    std::streambuf* originalOutput = std::cout.rdbuf();
+    std::cout.rdbuf(output.rdbuf());
+
+    conductElection(candidates);
+
+    std::string expectedOutput = 
+        "Голосование за выбор старосты!\n"
+        "Кандидаты:\n"
+        "1. Иванов\n"
+        "2. Петров\n"
+        "Введите номер кандидата, за которого хотите проголосовать (0 - закончить голосование): "
+        "Введите номер кандидата, за которого хотите проголосовать (0 - закончить голосование): "
+        "Введите номер кандидата, за которого хотите проголосовать (0 - закончить голосование): "
+        "Результаты голосования:\n"
+        "1. Иванов: 1 голосов\n"
+        "2. Петров: 1 голосов\n";
+
+    EXPECT_EQ(output.str(), expectedOutput);
+
+    std::cin.rdbuf(originalInput);
+    std::cout.rdbuf(originalOutput);
+}
+//Тестирование функции проведения голосования без ввода (с использованием мокирования cin):
+TEST(ElectionTest, ConductElectionWithoutInput) {
+    std::vector<Candidate> candidates;
+    candidates.push_back(Candidate("Иванов"));
+    candidates.push_back(Candidate("Петров"));
+
+    std::streambuf* originalInput = std::cin.rdbuf();
+    std::istringstream input("1\n2\n0\n");
+    std::cin.rdbuf(input.rdbuf());
+
+    std::stringstream output;
+    std::streambuf* originalOutput = std::cout.rdbuf();
+    std::cout.rdbuf(output.rdbuf());
+
+    conductElection(candidates);
+
+    std::string expectedOutput = 
+        "Голосование за выбор старосты!\n"
+        "Кандидаты:\n"
+        "1. Иванов\n"
+        "2. Петров\n"
+        "Введите номер кандидата, за которого хотите проголосовать (0 - закончить голосование): "
+        "Введите номер кандидата, за которого хотите проголосовать (0 - закончить голосование): "
+        "Введите номер кандидата, за которого хотите проголосовать (0 - закончить голосование): "
+        "Результаты голосования:\n"
+        "1. Иванов: 1 голосов\n"
+        "2. Петров: 1 голосов\n";
+
+    EXPECT_EQ(output.str(), expectedOutput);
+
+    std::cin.rdbuf(originalInput);
+    std::cout.rdbuf(originalOutput);
+}
+//Тестирование сценария без кандидатов:
+TEST(ElectionTest, NoCandidates) {
+    std::vector<Candidate> candidates;
+    
+    std::stringstream output;
+    std::streambuf* originalOutput = std::cout.rdbuf();
+    std::cout.rdbuf(output.rdbuf());
+
+    conductElection(candidates);
+
+    std::string expectedOutput = 
+        "Голосование за выбор старосты!\n"
+        "Кандидаты:\n"
+        "Результаты голосования:\n";
+
+    EXPECT_EQ(output.str(), expectedOutput);
+
+    std::cout.rdbuf(originalOutput);
+}
 int main() {
     // Ввод количества кандидатов
     int numCandidates;
@@ -74,5 +174,5 @@ int main() {
     // Проведение голосования
     conductElection(candidates);
 
-    return 0;
+    return RUN_ALL_TESTS();
 }
