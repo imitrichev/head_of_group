@@ -66,7 +66,7 @@ int main() {
     vector<Candidate> candidates;
     for (int i = 0; i < numCandidates; i++) {
         string name;
-        cout << "Введите имя кандидата #" << i + 1 << ": ";
+        cout << "Введите фамилию и имя кандидата #" << i + 1 << ": ";
         cin >> name;
         candidates.push_back(Candidate(name));
     }
