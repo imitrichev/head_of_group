@@ -68,15 +68,15 @@ struct Candidate {
 }
 // Тест проверяет правильность работы функции проведения выборов в обычных условиях с несколькими кандидатами и голосами.
 TEST(FunctionTesting, test_elections) {
-     vector<Candidate> candidates = {Candidate("Nikita", "Sidorenko"), Candidate("Ryan", "Gosling"), Candidate("Mikhail", "Sidorenko") };
+     vector<Candidate> candidates = {Candidate(" Roma", "Tomorek"), Candidate("Tom", "Holland"), Candidate("Andrey", "Kateckin") };
      vector<int> votes = {1, 1, 1, 2, 2, 3, 1, 2, 3, 1, 1, 1};
-    EXPECT_EQ("Sidorenko Nikita", conductElection(candidates, votes));
+    EXPECT_EQ("Tomorek  Roma", conductElection(candidates, votes));
     candidates.clear();
     votes.clear();
 }
 // Тест проверяет, что функция правильно обрабатывает случай, когда всего один кандидат
 TEST(FunctionTesting, test_elections_single_candidate) {
-         vector<Candidate> candidates = {Candidate("Nikita", "Sidorenko") };
+         vector<Candidate> candidates = {Candidate(" Roma", "Tomorek") };
      vector<int> votes = {1, 1, 1, 2, 2, 3, 1, 2, 3, 1, 1, 1};
     EXPECT_EQ("NO ELECTIONS", conductElection(candidates, votes));
     candidates.clear();
@@ -93,7 +93,7 @@ TEST(FunctionTesting, test_elections_no_candidates) {
 }
 // Тест проверяет, что функция правильно обрабатывает случай, когда нет голосов.
 TEST(FunctionTesting, test_elections_no_votes) {
-    vector<Candidate> candidates = {Candidate("Nikita", "Sidorenko"), Candidate("Ryan", "Gosling"), Candidate("Mikhail", "Sidorenko") };
+    vector<Candidate> candidates = {Candidate(" Roma", "Tomorek"), Candidate("Tom", "Holland"), Candidate("Andrey", "Kateckin") };
     vector<int> votes;
     EXPECT_EQ("NO VOTES", conductElection(candidates, votes));
     candidates.clear();
@@ -101,7 +101,7 @@ TEST(FunctionTesting, test_elections_no_votes) {
 }
 // Тест проверяет, что функция правильно обрабатывает случай, когда имеются незаконные голоса (голоса за несуществующих кандидатов).
 TEST(FunctionTesting, test_elections_illegal_votes) {
-    vector<Candidate> candidates = {Candidate("Nikita", "Sidorenko"), Candidate("Ryan", "Gosling"), Candidate("Mikhail", "Sidorenko") };
+    vector<Candidate> candidates = {Candidate(" Roma", "Tomorek"), Candidate("Tom", "Holland"), Candidate("Andrey", "Kateckin") };
     vector<int> votes  = {1, 1, 1, 2, 2, 3, 1, 2, 3, 1, 1, 1, 50, 46, 78};
     EXPECT_EQ("ILLEGAL VOTE", conductElection(candidates, votes));
     candidates.clear();
