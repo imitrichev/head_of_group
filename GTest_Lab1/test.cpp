@@ -1,5 +1,5 @@
-//#include "pch.h"
-#include "gtest/gtest.h"
+#include "pch.h"
+//#include "gtest/gtest.h"
 #include "../1LB_10VAR/main.h"
 #include <sstream>
 
@@ -59,6 +59,23 @@ TEST(Sort, CanSortListOfCandidates) {
 	ASSERT_EQ(candidates[0].name, "Lupa");
 }
 
+TEST(ResultsVote, CanWriteResultsInFile) {
+	vector<Candidate> candidates = {
+		Candidate("Pupa"),
+		Candidate("Lupa")
+	};
+	candidates[0].votes = 4;
+	candidates[1].votes = 2;
+
+	stringstream out;
+	stringstream sstream;
+	resultsVote(candidates, out, sstream);
+
+	string res1 = out.str();
+	string res2 = sstream.str();
+	ASSERT_EQ(res1, "Results: \n1. Pupa: 4 votes\n2. Lupa: 2 votes\n");
+	ASSERT_EQ(res2, "Results have been writen to results.txt\n");
+}
 int main(int argc, char** argv)
 {
 	::testing::InitGoogleTest(&argc, argv);

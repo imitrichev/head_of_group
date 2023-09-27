@@ -3,7 +3,7 @@
 
 using namespace std;
 
-
+ofstream out("results.txt");
 int main() {
     setlocale(LC_ALL, "");
     // Ввод количества кандидатов
@@ -21,10 +21,10 @@ int main() {
     }
 
     // Проведение голосования
-    listCandidates(candidates); 
-    vote(candidates);
+    listCandidates(candidates, cout); 
+    vote(candidates, cin, cout);
     sortCandidates(candidates);
-    resultsVote(candidates, out);
+    resultsVote(candidates, out, cout);
 
     return 0;
 }

@@ -7,7 +7,7 @@
 
 using namespace std;
 
-ofstream out("results.txt");
+
 // Структура для хранения информации о кандидате
 struct Candidate {
     string name;
@@ -59,7 +59,7 @@ void sortCandidates(vector<Candidate>& candidates)
 
 }
 
-void resultsVote(vector<Candidate>& candidates, ofstream& out, ostream& stream)
+void resultsVote(vector<Candidate>& candidates, ostream& out, ostream& stream)
 {
     // Вывод результатов голосования
     out << "Results: " << endl;
