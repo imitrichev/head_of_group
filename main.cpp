@@ -16,6 +16,26 @@ struct Candidate {
     }
 };
 
+// Функция для добавления кандидата по инициативе голосующего
+void addCandidate(vector<Candidate>& candidates) {
+    cout << "Введите имя кандидата, которого вы хотите добавить: ";
+    string candidate_name;
+    cin >> candidate_name;
+    cout << endl;
+
+    // Проверка на дублирование кандидата
+    for (int i = 0; i < candidates.size(); i++) {
+        if (candidate_name == candidates[i]) {
+            cout << "Кандидат с таким именем уже существует!" << endl;
+            break;
+        }
+    }
+
+    // Добавление кандидата
+    candidates.push_back(candidate_name);
+    cout << "Кандидат успешно добавлен!" << endl;
+}
+
 // Функция для проведения голосования
 void conductElection(vector<Candidate>& candidates) {
     cout << "Голосование за выбор старосты!" << endl;
@@ -47,7 +67,7 @@ void conductElection(vector<Candidate>& candidates) {
     // Сортировка кандидатов по убыванию голосов
     sort(candidates.begin(), candidates.end(), [](const Candidate& a, const Candidate& b) {
         return a.votes > b.votes;
-    });
+        });
 
     // Вывод результатов голосования
     cout << "Результаты голосования:" << endl;
