@@ -33,7 +33,7 @@ void addCandidate(vector<Candidate>& candidates) {
 
     // Проверка на дублирование кандидата
     for (int i = 0; i < candidates.size(); i++) {
-        if (candidate_name == candidates[i]) {
+        if (candidate_name == candidates[i].name) {
             cout << "Кандидат с таким именем уже существует!" << endl;
             break;
         }
@@ -53,17 +53,23 @@ void conductElection(vector<Candidate>& candidates) {
 
     // Цикл голосования
     while (true) {
-        cout << "Введите номер кандидата, за которого хотите проголосовать (0 - закончить голосование): ";
+        cout << "Введите номер кандидата, за которого хотите проголосовать (0 - закончить голосование) (-1 - предложить своего кандидата): ";
         int choice;
         cin >> choice;
 
-        if (choice < 0 || choice > candidates.size()) {
+        if (choice < -1 || choice > int(candidates.size())) {
             cout << "Недопустимый выбор!" << endl;
+            continue;
+        }
+        else if (choice == -1) {
+            addCandidate(candidates);
+            showCandidatesDesk(candidates);
             continue;
         }
         else if (choice == 0) {
             break;
         }
+
 
         // Увеличение количества голосов кандидата
         candidates[choice - 1].votes++;
