@@ -16,6 +16,14 @@ struct Candidate {
     }
 };
 
+// Функция вывода списка кандидатов
+void showCandidatesDesk(vector<Candidate>& candidates) {
+    cout << "Кандидаты:" << endl;
+    for (int i = 0; i < candidates.size(); i++) {
+        cout << i + 1 << ". " << candidates[i].name << endl;
+    }
+}
+
 // Функция для добавления кандидата по инициативе голосующего
 void addCandidate(vector<Candidate>& candidates) {
     cout << "Введите имя кандидата, которого вы хотите добавить: ";
@@ -32,7 +40,7 @@ void addCandidate(vector<Candidate>& candidates) {
     }
 
     // Добавление кандидата
-    candidates.push_back(candidate_name);
+    candidates.push_back(Candidate(candidate_name));
     cout << "Кандидат успешно добавлен!" << endl;
 }
 
@@ -41,10 +49,7 @@ void conductElection(vector<Candidate>& candidates) {
     cout << "Голосование за выбор старосты!" << endl;
 
     // Вывод списка кандидатов
-    cout << "Кандидаты:" << endl;
-    for (int i = 0; i < candidates.size(); i++) {
-        cout << i + 1 << ". " << candidates[i].name << endl;
-    }
+    showCandidatesDesk(candidates);
 
     // Цикл голосования
     while (true) {
